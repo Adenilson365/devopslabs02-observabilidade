@@ -13,3 +13,9 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --v
 #Install grafana lokki
 
 helm repo add grafana https://grafana.github.io/helm-charts
+
+helm install loki  grafana/loki-stack -f ./grafana-lokki/values.yaml --version 2.10.2 -n obs
+
+#Instalação do tempo
+
+helm upgrade --install opentelemetry-collector open-telemetry/opentelemetry-collector --set mode=daemonset --set image.repository="otel/opentelemetry-collector-k8s" --set command.name="otelcol-k8s" -f grafana-lokki/opentelemetry-collector-values.yaml -n obs

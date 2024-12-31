@@ -1,0 +1,47 @@
+
+
+loki:
+  auth_enabled: false
+  schemaConfig:
+    configs:
+      - from: "2024-04-01"
+        store: tsdb
+        object_store: gcs
+        schema: v13
+        index:
+          prefix: index_
+          period: 24h
+    ingester:
+      chunk_encoding: snappy 
+      chunk_target_size: 1048576
+    tracing: 
+      enabled: true
+    querier: 
+      max_concurrent: 4
+
+  storage:
+    bucketNames:
+      chunks: logs-grafana-loki-chunks
+
+  storage_config:
+    gcs:
+      bucket_name: logs-grafana-loki
+      service_account: |-
+        {
+        "type": "service_account",
+        "project_id": "devopslabs-445008",
+        "private_key_id": "ddd84eb8844b6cb95073ab0ac2f0802956681962",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCVirLoeLJMviim\nJOw/+hNLfa9sLSP2OK3oShsBkAXMNIfO05TjPvMWne1E/UlCZwtdUciBmqvf/q7U\nh9LvPvmhzpgf+fTpvzNV606Zqb8pMQckz/H2FWB7nWDQ6IJnpBETX8Xx1rY0Oa0A\nC6lZN1YJMP0LP/IpMOtD46qRjnRZYMgYX+COFI3CoOMLBnCoytbpAKJhtrse8XUK\nH9bjkp5wnfVwOMAC97duI5yuPZIQQ0KUfAE5rQCS834n6Te01GTxJ2aLiuSXTBb1\nO0JCxZfZUzyhbUhhcpVL8Mi1eI6UZ0+M9ktVs1lJxE+fWTy4DYmbPZwOe7XcR6FY\nUqhxSj71AgMBAAECggEACrf92ebo1NJehIYp/u30WxlfrQ/RP5FRedBx/hsuJzRu\ntZb52Y4GC413V9YV3bIYIPC/P/bvsecF7grsRiTL7NqrkcMvWF/RlKuAn0gJATFX\n8z4KeFqQ51tg+KhpzHb4mFxpikubFMQ7j8DGOzRZsN/3i0pil6w/eMbFT5iX414N\n80FI7cRE0eEmcDHaTI4R+GRNGs2VbpwyGRLJ9/FSpAbaf6gEy5xhJc/orUI1yJEI\nqrkSQtCUnsnPjaW567kkDY11ivbAMkwBU40K3knCRRcQrumJgwpCCv14unZWeiXa\nAcZd/VmNDZ1lAvoHfKjn0+4EBhGywr6eGYQASrKL8wKBgQDOJ30KStSo3ghhP/tE\nZQL9IfhC1ihHiMaW7Q4PrhRr+6i1adY1MI9xwZI3QCw7j9QYiXqC91sRPoe99DFo\nksCKoxJcCxtzFziaJ+3Q6y7pIYioGb+Lks/PUwiQgbl568nn3cH96mNE0FhaqcDu\n+8tlD9zf83+chtwDlz848dbkNwKBgQC5swTjOu2SUmG4WmjajSsIs5b3CpQwKcQM\nLRkGI/TOMMFXGpo2stgPDr3I4MNSsvaFsW1KDpxonsI4EhP8uQD7UdeCNW5tKkln\n2EN5Y8MDQEnJ6T5gfCPKZnkBoH3g1SzxHn6DVQxtWZknwfTsZK/7dm6pTJ6XXHwA\nRxQnjQd4MwKBgQCsUeu+N7Cs+vNsPuwMTpcB+mwnihWfPeAp9jsDtlJRtMlf4vjv\n+whcYR6UWmre2qnCXOBwKs0PjAIxMLZAIDMbb5YAJDSsrmNc0DWEpaHPs30kbmlj\nBLP6LAEDsbvVAtgBnabzVQHnWnQQTMb9vLFWZ70L4eDwePXddoadVeF3XwKBgQCe\niNTtYUudFbPTfWvy2X4Zyahic6ebjqyOcJnigiPnO/xzboSlmf2WrVEdA7X9Dkgk\nTxsslFi3gIHy+IwTv6W06WQBB7ikfet5Okowghjk16enNvdHy/OKQf2gg/GzVost\ntojvelZHrKxyIsYEYtlS5wMGiiECu7QpUIVGVsI/vQKBgQCOq1st8DkKhE1QJMxq\n7LdwMqobLeUYha3ybCKP+FqwLUzRd1XLBpi680ZGS3eduxoqw/cU6Rc1hsFP52ag\ny5j8VqWb8rOf92+UdAm7Ikyj0Fk9MzBDcwqy+ccsDZzXoq3y3UkXn8VZf5yBw8wG\n3XFMQrcang2bb5C7WpVBfDKh0w==\n-----END PRIVATE KEY-----\n",
+        "client_email": "devopslabs-terraform@devopslabs-445008.iam.gserviceaccount.com",
+        "client_id": "115327787734308015294",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/devopslabs-terraform%40devopslabs-445008.iam.gserviceaccount.com",
+        "universe_domain": "googleapis.com"
+        }
+      chunk_buffer_size: 0
+      request_timeout: 30s
+      enable_opencensus: false
+      enable_http2: true
+      enable_retries: true

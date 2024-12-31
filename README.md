@@ -33,6 +33,22 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install loki  grafana/loki-stack -f ./grafana-lokki/values.yaml --version 2.10.2 -n obs
 ```
+- Instala a versão monolito com todos os componentes do grafana em um único deploy.
+- Por padrão instala a depêndencia promtail para coleta de logs
+
+- Versão [distributed](https://artifacthub.io/packages/helm/grafana/loki-distributed)
+- Mesmo formato de instalação, sendo necessário instalar a parte o [promtail](https://artifacthub.io/packages/helm/grafana/promtail)
+- Configurar o values.yaml do promtail para enviar logs ao loki
+```YAML
+config:
+  clients:
+    - url: http://loki-dis-loki-distributed-gateway/loki/api/v1/push
+
+# A url deve representar o dns do gateway do loki http://<svc>.<ns>/loki/api/v1/push
+# se no mesmo namespace http://<svc>/loki/api/v1/push
+```
+
+
 - Após instalar necessário adicionar  a fonte de dados ao Grafana 
 ### Problemas de instalação:
 [Discussão](https://community.grafana.com/t/loki-helm-documentation-isnt-working-for-me/122777/5)
@@ -46,3 +62,11 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --version 67.5.0 --namespace obs --create-namespace -f ./kube-prom-stak/prom-values.yaml --wait
 ```
+
+## Grafana Tempo ( Tracing )
+###
+### Arquitetura Tempo
+![Grafana Tempo](./docs-assets/arquitetura-tempo.png)
+
+### Documentação
+[Opentelemetry como pipeline](https://grafana.com/blog/2021/04/13/how-to-send-traces-to-grafana-clouds-tempo-service-with-opentelemetry-collector/)
