@@ -23,6 +23,7 @@
 - [openapm-landscape](https://openapm.io/landscape)
 - [Grafana loki]
 - [Opentelemetry](https://opentelemetry.io/)
+- [Opentelemetry k8s](https://opentelemetry.io/docs/kubernetes)
 - [Grafana Tempo](https://grafana.com/oss/tempo/)
 
 
