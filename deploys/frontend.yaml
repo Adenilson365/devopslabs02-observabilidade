@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+    pdb: 'true'
+    version: v1
+spec:
+  replicas : 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        version: v1
+        block-especific: 'true'
+    spec:
+      initContainers:
+      - name: frontend-config
+        image: busybox
+        command: ['sh','-c']
+        args: 
+          - |
+            cat <<EOF > /app/src/js/config/apiConfig.js
+            const config = {
+              "baseUrl": "${API_URL}",
+            };
+            export default config;
+            EOF
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/src/js/config
+        envFrom:
+        - configMapRef:
+            name: frontend-config
+      containers:
+      - name: frontend
+        image: adenilsonkon/devopslabs-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 250m
+            memory: 250Mi
+        envFrom:
+        - configMapRef:
+            name: frontend-config
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/src/js/config
+      volumes:
+      - name: config-volume
+        emptyDir: {}
+  

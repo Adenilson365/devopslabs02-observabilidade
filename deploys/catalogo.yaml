@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogo
+  labels:
+    app: catalogo 
+    pdb: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalogo
+  template:
+    metadata:
+      labels:
+        app: catalogo
+    spec:
+      containers: 
+        - name: catalogo
+          image: adenilsonkon/devopslabs-catalogo:latest
+          ports:
+            - containerPort: 3333
+          envFrom:
+            - secretRef:
+                name: catalogo-secret
+            - configMapRef:
+                name: db-config
+            - configMapRef:
+                name: telemetry-catalogo
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogo
+  labels:
+    istio-metrics: 'true'
+spec:
+  selector:
+    app: catalogo
+  ports:
+    - protocol: TCP
+      port: 3333
+      targetPort: 3333
+      name: http
+    - protocol: TCP
+      port: 15020
+      targetPort: 15020
+      name: http-metrics
+
+

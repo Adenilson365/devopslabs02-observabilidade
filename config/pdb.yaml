@@ -1,0 +1,19 @@
+apiVersion: policy/v1 
+kind: PodDisruptionBudget
+metadata:
+  name: pdb
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      pdb: 'true'
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: pdb-zero
+spec:
+  minAvailable: 0
+  selector:
+    matchLabels:
+      pdb: 'zero'

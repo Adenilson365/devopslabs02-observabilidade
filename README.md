@@ -5,6 +5,7 @@
 - Os dados coletados precisam ter persistência ( disco rígido ou  buckets). 
 - Todo o processo deve estar documentado e ser replicável.
    - Dados sensíveis não devem estar no repositório, mas o readme deve indicar sua configuração. 
+- Instalação via [shellscript](#instalação)
 
 ### Stack Inicial de observabilidade: 
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)  ![Grafana](https://img.shields.io/badge/grafana%20tempo-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white) ![Grafana LOKI](https://img.shields.io/badge/grafana%20loki-%23f4800.svg?style=for-the-badge&logo=grafana&logoColor=white) ![](https://img.shields.io/badge/Opentelemetry-0078D7?style=for-the-badge&logo=azure-devops&logoColor=white)
@@ -26,6 +27,15 @@
 - [Opentelemetry k8s](https://opentelemetry.io/docs/kubernetes)
 - [Grafana Tempo](https://grafana.com/oss/tempo/)
 
+
+## Instalação:
+- execute o script **install.sh**
+- Para GCP - Execute o terraform conforme este [repositório](https://github.com/Adenilson365/devopslabs01-iac) ou rode em k8s local em ambos siga o próximo passo do diretório config.
+  - Nesse momento é necessário liberar no GCP SQL um acesso para a rede do GKE, quando estiver via Terraform essa observação será apagada.
+  - É necessário criar o usuário para a aplicação usar, com mesmo nome e senha do secret do catalogo, pode fazer isso via console GCP.
+- Crie os arquivos segundo o readme do diretório config
+- DNS: Precisa apontar seu registro A api e obs para o ip do loadbalancing provisionado pelo nginx, ou configure como preferir. 
+- DNS e Liberação SQL são as configurações manuais presentes no momento, o restante está via script shell.
 
 ### Instalação Grafana Loki 
 [Repositório Artifacthub](https://artifacthub.io/packages/helm/grafana/loki)
@@ -68,6 +78,13 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --v
 ###
 ### Arquitetura Tempo
 ![Grafana Tempo](./docs-assets/arquitetura-tempo.png)
+![Documentação](https://grafana.com/docs/tempo/latest/setup/)
+![Helm chart](https://github.com/grafana/helm-charts/tree/main/charts/tempo)
+
+```shell
+helm repo add grafana https://grafana.github.io/helm-charts
+helm install tempo grafana/tempo -n obs
+```
 
 ### Documentação
 [Opentelemetry como pipeline](https://grafana.com/blog/2021/04/13/how-to-send-traces-to-grafana-clouds-tempo-service-with-opentelemetry-collector/)
