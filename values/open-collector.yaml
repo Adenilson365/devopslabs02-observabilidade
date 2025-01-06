@@ -6,6 +6,10 @@ config:
       endpoint: http://tempo.obs.svc.cluster.local:4317
       tls: 
         insecure: true
+    otlphttp: 
+      endpoint: http://loki:3100/otlp
+      tls: 
+        insecure: true
   extensions:
     # The health_check extension is mandatory for this chart.
     # Without the health_check extension the collector will fail the readiness and liveliness probes.
@@ -56,8 +60,8 @@ config:
     pipelines:
       logs:
         exporters:
-          - otlp
           - debug
+          - otlphttp
         processors:
           - memory_limiter
           - batch

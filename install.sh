@@ -41,6 +41,9 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --v
 
 helm upgrade --install loki  grafana/loki-stack --version 2.10.2 -n obs  --wait
 
+#Loki distributed
+#helm install loki grafana/loki-distributed --version 0.80.0 -n obs
+
 #Instalação do OTEL
 
 helm upgrade --install my-opentelemetry-collector open-telemetry/opentelemetry-collector --set mode=deployment \
