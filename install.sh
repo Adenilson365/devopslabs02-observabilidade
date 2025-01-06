@@ -51,7 +51,7 @@ helm upgrade --install my-opentelemetry-collector open-telemetry/opentelemetry-c
 
 #Instalação do Tempo
 
-helm install tempo grafana/tempo -f ./values/tempo.yaml -n obs
+helm upgrade --install tempo grafana/tempo -f ./values/tempo.yaml -n obs
 
 #Reaplicar cluster-issuer
 kubectl apply -f ./config/cluster-issuer.yaml

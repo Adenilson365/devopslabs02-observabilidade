@@ -13,3 +13,12 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
+    enableRemoteWriteReceiver: true
+    remoteWrite: 
+      - url: "http://prometheus-kube-prometheus-prometheus.obs:9090/api/v1/write"
+        # basicAuth:
+        #   username: "admin"
+        #   password: "admin"
+        # writeRelabelConfigs:
+        #   - sourceLabels: [__name__]
+        #     targetLabel: job

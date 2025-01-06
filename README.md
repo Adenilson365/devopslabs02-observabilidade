@@ -192,7 +192,7 @@ data:
 - [x] Instalar a stack completa via helm
 - [x] Conectar opentelemetry ao tempo
 - [x] Instalar stack lokki + promtail
-- [ ] Trocar Promtail pelo opentelemetry log
+- [x] Trocar Promtail pelo opentelemetry log
 - [ ] Implementar alertas via prometheus
-- [ ] Integrar prometheus, opentelemetry, tempo para gerar grafico de malha
+- [x] Integrar prometheus, opentelemetry, tempo para gerar grafico de malha
 - [ ] Implementar volume persistente para logs e traces
