@@ -1,7 +1,6 @@
 #Configuração do cluster GKE
 
-gcloud container clusters get-credentials devops-labs01 \
-    --region=us-east1
+gcloud container clusters get-credentials devops-labs01 --region=us-east1
 
 kubectl create clusterrolebinding cluster-admin-binding \
   --clusterrole cluster-admin \
@@ -37,12 +36,14 @@ helm repo update
 
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --version 67.5.0 --namespace obs  -f ./values/prom-values.yaml --wait
 
-#Install grafana lokki
+#Install grafana loki stack
 
-helm upgrade --install loki  grafana/loki-stack --version 2.10.2 -n obs  --wait
+#helm upgrade --install loki  grafana/loki-stack --version 2.10.2 -n obs  --wait
 
 #Loki distributed
-#helm install loki grafana/loki-distributed --version 0.80.0 -n obs
+#helm install loki grafana/loki-distributed --version 0.80.0 -n obs -f ./values/loki-dis.yaml --wait
+
+ helm install loki grafana/loki -f values/loki-dis.yaml -n obs --wait
 
 #Instalação do OTEL
 

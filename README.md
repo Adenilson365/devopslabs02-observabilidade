@@ -6,7 +6,7 @@
 - Todo o processo deve estar documentado e ser replicável.
    - Dados sensíveis não devem estar no repositório, mas o readme deve indicar sua configuração. 
 - Instalação via [shellscript](#instalação)
-
+- [Acompahe as etapas](#etapas)
 ### Stack Inicial de observabilidade: 
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)  ![Grafana](https://img.shields.io/badge/grafana%20tempo-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white) ![Grafana LOKI](https://img.shields.io/badge/grafana%20loki-%23f4800.svg?style=for-the-badge&logo=grafana&logoColor=white) ![](https://img.shields.io/badge/Opentelemetry-0078D7?style=for-the-badge&logo=azure-devops&logoColor=white)
 
@@ -187,12 +187,18 @@ data:
 ```
 
 
-### Etapas
+### Etapas 
 
 - [x] Instalar a stack completa via helm
 - [x] Conectar opentelemetry ao tempo
-- [x] Instalar stack lokki + promtail
+- [x] Instalar stack loki + promtail
 - [x] Trocar Promtail pelo opentelemetry log
 - [ ] Implementar alertas via prometheus
 - [x] Integrar prometheus, opentelemetry, tempo para gerar grafico de malha
+- [x] Conectar métricas de aplicação do Opentelemetry ao prometheus
+- [x] Implementar volume persistente para métricas
 - [ ] Implementar volume persistente para logs e traces
+- [ ] Revisar e alinhar a documentação
+- [ ] Corrigir bug de métricas duplicadas no prometheus
+
+ [⬆️ Voltar ao topo](#objetivos)

@@ -1,6 +1,8 @@
 ### Loki
 - [Conectar Opentelemetry ao Loki](https://grafana.com/docs/loki/latest/send-data/otel/)
 
+- [Helm Chart](https://grafana.com/docs/loki/latest/setup/install/helm/install-monolithic/)
+
 - Para usar o distributed, o opentelemetry deve se conectar ao gateway para http.
 
 ### Grafana Dashboard
@@ -44,3 +46,33 @@ prometheus:
 - Após é possível ver o serviceGraph no tempo.
 
 ![nodegraph-tempo](../docs-assets/nodegraph-tempo.png)
+
+### Conexão Otel + prometheus
+
+- Foi necessário rodar o [otel-lgtm](https://hub.docker.com/r/grafana/otel-lgtm) - E usar os arquivos de configuração como norte, depois encontrar as docs abaixo: 
+[Documentação prometheus](https://prometheus.io/docs/guides/opentelemetry/)
+[Issue Git sobre Otlp Receiver](https://github.com/prometheus-community/helm-charts/issues/5080)
+[Protocolos Otel](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/opentelemetry-instrumentation)
+[Endpoints Opentelemetry](https://opentelemetry.io/docs/specs/otel/protocol/exporter/)
+[Youtube - Video de referência](https://www.youtube.com/watch?v=B-ZZk4HZrfY&ab_channel=LinhVu)
+
+
+- No values do prometheus
+
+```Yaml
+prometheus:
+  prometheusSpec:
+    additionalArgs:
+      - name: web.enable-otlp-receiver
+        value: ''
+```
+
+- No values do Otel
+``` YAML
+# No exporter adicione esse exporter:
+otlphttp/metrics:
+      endpoint: http://prometheus-kube-prometheus-prometheus.obs:9090/api/v1/otlp
+      tls:
+        insecure: true
+# Necessario adiciona-lo a pipeline também
+```

@@ -7,13 +7,13 @@ config:
       tls: 
         insecure: true
     otlphttp: 
-      endpoint: http://loki-gateway.obs/otlp
+      endpoint: http://loki-loki-gateway.obs/otlp
       tls: 
         insecure: true
-
-
-        
-
+    otlphttp/metrics:
+      endpoint: http://prometheus-kube-prometheus-prometheus.obs:9090/api/v1/otlp
+      tls:
+        insecure: true
   extensions:
     # The health_check extension is mandatory for this chart.
     # Without the health_check extension the collector will fail the readiness and liveliness probes.
@@ -74,6 +74,7 @@ config:
       metrics:
         exporters:
           - debug
+          - otlphttp/metrics
         processors:
           - memory_limiter
           - batch
