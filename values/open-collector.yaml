@@ -7,7 +7,7 @@ config:
       tls: 
         insecure: true
     otlphttp: 
-      endpoint: http://loki-loki-gateway.obs/otlp
+      endpoint: http://loki-gateway.obs/otlp
       tls: 
         insecure: true
     otlphttp/metrics:

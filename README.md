@@ -1,7 +1,11 @@
+# Projeto de observabilidade ( logs-traces-métricas).
+- Fase: Em revisão de documentação
+
 ## Objetivos 
 
 - Criar uma stack completa de observabilidade.
 - Atingir os 3 pilares da observabilidade: Logs, métricas e tracing.
+- Ter envio de alertas baseados em métricas
 - Os dados coletados precisam ter persistência ( disco rígido ou  buckets). 
 - Todo o processo deve estar documentado e ser replicável.
    - Dados sensíveis não devem estar no repositório, mas o readme deve indicar sua configuração. 
@@ -192,13 +196,13 @@ data:
 - [x] Instalar a stack completa via helm
 - [x] Conectar opentelemetry ao tempo
 - [x] Instalar stack loki + promtail
-- [x] Trocar Promtail pelo opentelemetry log
-- [ ] Implementar alertas via prometheus
+- [x] Trocar Promtail pelo opentelemetry para logs
+- [x] Implementar alertas via prometheus
 - [x] Integrar prometheus, opentelemetry, tempo para gerar grafico de malha
 - [x] Conectar métricas de aplicação do Opentelemetry ao prometheus
 - [x] Implementar volume persistente para métricas
-- [ ] Implementar volume persistente para logs e traces
-- [ ] Revisar e alinhar a documentação
+- [x] Implementar volume persistente para logs e traces
 - [ ] Corrigir bug de métricas duplicadas no prometheus
+- [ ] Revisar e alinhar a documentação
 
  [⬆️ Voltar ao topo](#objetivos)

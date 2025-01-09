@@ -41,6 +41,7 @@ prometheus:
 
 - Se tudo der certo deve aparecer as métricas iniciadas em traces no prometheus.
 - Na UI do grafana nas configurações do datasource tempo em aditionalSettings, adicione o prometheus como datasource e marque a opção nodeGraph, como abaixo:
+
 ![Prometheus-tempo](../docs-assets/prometheus-tempo.png)
 
 - Após é possível ver o serviceGraph no tempo.
@@ -50,11 +51,11 @@ prometheus:
 ### Conexão Otel + prometheus
 
 - Foi necessário rodar o [otel-lgtm](https://hub.docker.com/r/grafana/otel-lgtm) - E usar os arquivos de configuração como norte, depois encontrar as docs abaixo: 
-[Documentação prometheus](https://prometheus.io/docs/guides/opentelemetry/)
-[Issue Git sobre Otlp Receiver](https://github.com/prometheus-community/helm-charts/issues/5080)
-[Protocolos Otel](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/opentelemetry-instrumentation)
-[Endpoints Opentelemetry](https://opentelemetry.io/docs/specs/otel/protocol/exporter/)
-[Youtube - Video de referência](https://www.youtube.com/watch?v=B-ZZk4HZrfY&ab_channel=LinhVu)
+- [Documentação prometheus](https://prometheus.io/docs/guides/opentelemetry/)
+- [Issue Git sobre Otlp Receiver](https://github.com/prometheus-community/helm-charts/issues/5080)
+- [Protocolos Otel](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/opentelemetry-instrumentation)
+- [Endpoints Opentelemetry](https://opentelemetry.io/docs/specs/otel/protocol/exporter/)
+- [Youtube - Video de referência](https://www.youtube.com/watch?v=B-ZZk4HZrfY&ab_channel=LinhVu)
 
 
 - No values do prometheus

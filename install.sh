@@ -43,7 +43,7 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --v
 #Loki distributed
 #helm install loki grafana/loki-distributed --version 0.80.0 -n obs -f ./values/loki-dis.yaml --wait
 
- helm install loki grafana/loki -f values/loki-dis.yaml -n obs --wait
+helm upgrade --install loki grafana/loki -f values/loki-dis.yaml -n obs --wait
 
 #Instalação do OTEL
 
@@ -56,3 +56,6 @@ helm upgrade --install tempo grafana/tempo -f ./values/tempo.yaml -n obs
 
 #Reaplicar cluster-issuer
 kubectl apply -f ./config/cluster-issuer.yaml
+
+#Aplicar alert rules
+kubectl apply -f ./alertmanager/

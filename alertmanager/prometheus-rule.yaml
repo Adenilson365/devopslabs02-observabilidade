@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: api-image
+  labels:
+    prometheus: kube-prometheus-stack-prometheus
+    role: alert-rules
+    app: kube-prometheus-stack
+    release: prometheus
+spec:
+  groups:
+    - name: error-api-image-endpoint-get-images
+      rules:
+      - alert: AltaTaxaErros
+        expr: rate(http_server_duration_milliseconds_count{ job="api", prometheus="obs/prometheus-kube-prometheus-prometheus", http_status_code="404"}[2m]) > 0.5
+        for: 1m
+        labels:
+          team: web
+        annotations:
+          summary: Alta taxa de erros no endpoint /get-images/{id_image}
+          description: "A taxa de erros no endpoint /get-images/{id_image} está muito alta."
+          
