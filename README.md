@@ -9,27 +9,31 @@
 - Os dados coletados precisam ter persistência ( disco rígido ou  buckets). 
 - Todo o processo deve estar documentado e ser replicável.
    - Dados sensíveis não devem estar no repositório, mas o readme deve indicar sua configuração. 
-- Instalação via [shellscript](#instalação)
+###
+- [Instalção no kubernetes via shellscript](#instalação)
 - [Acompahe as etapas](#etapas)
-### Stack Inicial de observabilidade: 
+### Stack de observabilidade utilizada: 
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)  ![Grafana](https://img.shields.io/badge/grafana%20tempo-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white) ![Grafana LOKI](https://img.shields.io/badge/grafana%20loki-%23f4800.svg?style=for-the-badge&logo=grafana&logoColor=white) ![](https://img.shields.io/badge/Opentelemetry-0078D7?style=for-the-badge&logo=azure-devops&logoColor=white)
 
 ### Diagrama da stack
 ![Diagrama Stack Observabilidade](./docs-assets/diagrama-stack-obs.png)
 
+### Documentação da stack
+- [OpenTelemetry SDK](https://opentelemetry.io/) - Para instrumentar a aplicação
+- [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) - Coletar métricas, traces, logs e enviar ao backend correspondente.
+- [Prometheus](https://prometheus.io/docs) - Exporter de métricas kubernetes e backend de métricas
+- [Grafana Loki](https://grafana.com/docs/loki/latest/) - Backend de logs
+- [Grafana Tempo](https://grafana.com/docs/tempo/latest/) - Backend de tracing
+- [Grafana](https://grafana.com/docs/grafana/latest/) - Dashboards
+- [Openapm - Diagrama e Recursos](https://openapm.io/landscape)
+
+
 ### Repositórios Relacionados:
-- Abaixo aplicação usada como base para esse laboratório, objetivo é aplicar conceitos de observabilidade e não programação em sí, exceto pela instrumentalização da aplicação.
-- [Terraform](https://github.com/Adenilson365/devopslabs01-iac)
+- Abaixo aplicação usada como base para esse laboratório, objetivo é aplicar conceitos de observabilidade na configuração de ambiente e não programação em sí. 
 - [Frontend](https://github.com/Adenilson365/devopslabs01-frontend)
 - [Backend - Catalogo](https://github.com/Adenilson365/devopslabs01-serviceMesh)
 - [Backend - Api de Imagens](https://github.com/Adenilson365/devopslabs01-api-images)
-
-### Documentação
-- [openapm-landscape](https://openapm.io/landscape)
-- [Grafana loki]
-- [Opentelemetry](https://opentelemetry.io/)
-- [Opentelemetry k8s](https://opentelemetry.io/docs/kubernetes)
-- [Grafana Tempo](https://grafana.com/oss/tempo/)
+- [Terraform - IAC](https://github.com/Adenilson365/devopslabs01-iac)
 
 
 ## Instalação:
